@@ -153,10 +153,8 @@ body {
     height: 912px;
     border-radius: 36px;
     box-shadow:
-      0 30px 60px -10px rgba(0,0,0,0.55),
-      0 18px 30px -10px rgba(0,0,0,0.4),
-      0 0 0 8px #0c0e14,
-      0 0 0 9px #2a2f3a;
+      0 30px 60px -10px rgba(0,0,0,0.45),
+      0 18px 30px -10px rgba(0,0,0,0.3);
   }
 }
 
