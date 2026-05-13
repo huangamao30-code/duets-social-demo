@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+  <meta name="theme-color" content="#40defb" />
+  <title>Duets</title>
+
+  <link rel="preload" as="image" href="./assets/images/card-photos.png" />
+  <link rel="preload" as="image" href="./assets/images/dotted-bg.png" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <div class="viewport-wrap">
+    <main class="phone-frame" id="app">
+
+      <!-- ════════════════ INITIAL SCREEN (1:807 chat) ════════════════ -->
+      <section class="screen screen--initial is-active" id="screen-initial" aria-label="Chat conversation">
+        <!-- Pre-rendered chat screenshot, stretched to fill the 420×912 frame for pixel-exact hotspot alignment -->
+        <img class="initial-bg" src="./assets/images/chat-initial.png" alt="" aria-hidden="true" />
+        <button class="initial-notif-hotspot" type="button" data-action="enter-screens" aria-label="Open memory collection">
+          <span class="initial-notif-hotspot__glow" aria-hidden="true"></span>
+        </button>
+      </section>
+
+
+      <!-- ════════════════ SCREENS 1 / 2 / 3 (swipeable) ════════════════ -->
+      <div class="swipe-stage" id="swipeStage" aria-hidden="true">
+
+        <!-- Theme background layer (animates between themes) -->
+        <div class="theme-bg" id="themeBg" aria-hidden="true">
+          <div class="theme-bg__layer theme-bg__layer--1 is-active"></div>
+          <div class="theme-bg__layer theme-bg__layer--2"></div>
+          <div class="theme-bg__layer theme-bg__layer--3"></div>
+        </div>
+
+        <!-- Persistent header on top of all 3 screens -->
+        <header class="screen-header">
+          <button class="header-back" type="button" data-action="back-to-initial" aria-label="Back">
+            <svg viewBox="0 0 13 24" width="9" height="16" fill="none">
+              <path d="M12 23L1 12L12 1" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <div class="header-relationship">
+            <span class="header-relationship__label">reletionship:</span>
+            <span class="header-relationship__value">friends</span>
+            <button class="header-relationship__edit" type="button" aria-label="Edit relationship">
+              <svg viewBox="0 0 28 28" width="28" height="28" fill="none">
+                <path d="M15.5576 22.7591H22.9975" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M18.7341 5.6687C17.1661 4.4927 14.9424 4.81004 13.7664 6.37687C13.7664 6.37687 7.91788 14.1679 5.88905 16.8711C3.86022 19.5754 5.77938 22.926 5.77938 22.926C5.77938 22.926 9.56405 23.7964 11.5637 21.1305C13.5646 18.4659 19.4411 10.6364 19.4411 10.6364C20.6171 9.06954 20.3009 6.8447 18.7341 5.6687Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12.2549 8.41333L17.9295 12.6728" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </header>
+
+        <!-- Persistent tab bar -->
+        <nav class="tab-bar" id="tabBar" aria-label="Switch view">
+          <button class="tab is-active" type="button" data-target="1">
+            <span class="tab__icon tab__icon--duets" aria-hidden="true"></span>
+            <span class="tab__label">Duets</span>
+            <span class="tab__underline" aria-hidden="true"></span>
+          </button>
+          <button class="tab" type="button" data-target="2">
+            <span class="tab__icon tab__icon--picks" aria-hidden="true"></span>
+            <span class="tab__label">Picks</span>
+            <span class="tab__underline" aria-hidden="true"></span>
+          </button>
+          <button class="tab" type="button" data-target="3">
+            <span class="tab__icon tab__icon--replies" aria-hidden="true"></span>
+            <span class="tab__label">Replies</span>
+            <span class="tab__underline" aria-hidden="true"></span>
+          </button>
+        </nav>
+
+        <div class="swipe-track" id="swipeTrack">
+
+          <!-- ─── SCREEN 1: DUETS (cyan) ─── -->
+          <section class="screen screen--themed theme-1" id="screen-1" data-screen="1" aria-label="Duets dashboard">
+
+            <div class="card-deck">
+              <div class="card-deck__bg" aria-hidden="true"></div>
+              <img class="card-deck__sticker" src="./assets/images/sticker-deck-duets.png" alt="" aria-hidden="true" />
+              <button class="card-deck__hotspot" type="button" data-action="open-modal" aria-label="Open collection"></button>
+
+              <div class="open-panel" data-action="open-modal">
+                <button class="open-btn" type="button" data-action="open-modal">
+                  <span>open</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="cta-go-add" type="button" data-popup="3">Go add now</button>
+              </div>
+            </div>
+
+            <div class="progress-row">
+              <div class="progress-bar" style="--progress-val: 0.7">
+                <div class="progress-bar__fill">
+                  <span class="progress-bar__text">35 / 50 <span class="star-mini" aria-hidden="true"></span></span>
+                </div>
+              </div>
+              <div class="progress-reward">
+                <img src="./assets/images/reward-cyan.png" alt="" />
+                <span class="progress-reward__label">1000</span>
+              </div>
+            </div>
+            <p class="progress-hint">15 Points to 1000 Traffic Boost ~</p>
+
+            <section class="get-points">
+              <header class="get-points__header">
+                <span class="get-points__star" aria-hidden="true">★</span>
+                <h2 class="get-points__title">Get Points</h2>
+              </header>
+              <ul class="get-points__list" data-stagger>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <strong>Weekend mood 🎬</strong>
+                    <div class="get-points__sub">Film a travel clip together <span class="reward-chip">10</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="3">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Send a Hand Dance challenge <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="3">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Start a Lip Sync duet <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="3">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Remix their latest post <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="3">Start</button>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+
+          <!-- ─── SCREEN 2: PICKS (pink) ─── -->
+          <section class="screen screen--themed theme-2" id="screen-2" data-screen="2" aria-label="Picks dashboard" aria-hidden="true">
+
+            <div class="card-deck">
+              <div class="card-deck__bg" aria-hidden="true"></div>
+              <img class="card-deck__sticker" src="./assets/images/sticker-deck-picks.png" alt="" aria-hidden="true" />
+              <button class="card-deck__hotspot" type="button" data-popup="4" aria-label="Open collection"></button>
+
+              <div class="open-panel" data-popup="4">
+                <button class="open-btn" type="button" data-popup="4">
+                  <span>open</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="cta-go-add" type="button" data-popup="2">Go add now</button>
+              </div>
+            </div>
+
+            <div class="progress-row">
+              <div class="progress-bar" style="--progress-val: 0.6">
+                <div class="progress-bar__fill">
+                  <span class="progress-bar__text">30 / 50 <span class="star-mini" aria-hidden="true"></span></span>
+                </div>
+              </div>
+              <div class="progress-reward">
+                <img src="./assets/images/reward-pink.png" alt="" />
+              </div>
+            </div>
+            <p class="progress-hint">20 points away from your reward~</p>
+
+            <section class="get-points">
+              <header class="get-points__header">
+                <span class="get-points__star" aria-hidden="true">★</span>
+                <h2 class="get-points__title">Get Points</h2>
+              </header>
+              <ul class="get-points__list" data-stagger>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <strong>Halloween is coming 🎃</strong>
+                    <div class="get-points__sub">Let's pick a gift for her <span class="reward-chip">10</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="2">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Share your latest saved item <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="2">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Check their wishlist &amp; surprise them <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="2">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Browse Shop &amp; send a small treat <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="2">Start</button>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+
+          <!-- ─── SCREEN 3: REPLIES (yellow) ─── -->
+          <section class="screen screen--themed theme-3" id="screen-3" data-screen="3" aria-label="Replies dashboard" aria-hidden="true">
+
+            <div class="card-deck">
+              <div class="card-deck__bg" aria-hidden="true"></div>
+              <img class="card-deck__sticker" src="./assets/images/sticker-deck-replies.png" alt="" aria-hidden="true" />
+              <button class="card-deck__hotspot" type="button" data-popup="4" aria-label="Open collection"></button>
+
+              <div class="open-panel" data-popup="4">
+                <button class="open-btn" type="button" data-popup="4">
+                  <span>open</span>
+                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" aria-hidden="true">
+                    <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+                <button class="cta-go-add" type="button" data-popup="1">Go add now</button>
+              </div>
+            </div>
+
+            <div class="progress-row">
+              <div class="progress-bar" style="--progress-val: 0.8">
+                <div class="progress-bar__fill">
+                  <span class="progress-bar__text">40 / 50 <span class="star-mini" aria-hidden="true"></span></span>
+                </div>
+              </div>
+              <div class="progress-reward">
+                <img src="./assets/images/reward-yellow.png" alt="" />
+              </div>
+            </div>
+            <p class="progress-hint">10 points away from your badge~</p>
+
+            <section class="get-points">
+              <header class="get-points__header">
+                <span class="get-points__star" aria-hidden="true">★</span>
+                <h2 class="get-points__title">Get Points</h2>
+              </header>
+              <ul class="get-points__list" data-stagger>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <strong>She just posted 💬</strong>
+                    <div class="get-points__sub">Leave a Comment for her <span class="reward-chip">10</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="1">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">@ your roast buddy under a funny clip <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="1">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Find a hot take &amp; tag them in <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="1">Start</button>
+                </li>
+                <li class="get-points__item">
+                  <div class="get-points__copy">
+                    <div class="get-points__sub">Reply to their latest comment thread <span class="reward-chip">5</span></div>
+                  </div>
+                  <button class="start-btn" type="button" data-popup="1">Start</button>
+                </li>
+              </ul>
+            </section>
+          </section>
+
+        </div><!-- /.swipe-track -->
+
+      </div><!-- /.swipe-stage -->
+
+
+      <!-- ════════════════ CARD MODAL (1:622) — opened from screen-1's "open" button ════════════════ -->
+      <aside class="card-modal" id="cardModal" aria-hidden="true">
+        <div class="card-modal__backdrop" data-action="close-modal" aria-hidden="true"></div>
+        <div class="card-modal__panel" role="dialog" aria-modal="true" aria-label="Memory collection" data-action="close-modal">
+
+          <div class="initial-cards">
+            <div class="initial-cards__col initial-cards__col--left">
+
+              <!-- F card: empty placeholder -->
+              <div class="back-card back-card--empty" style="--tilt: -12deg" data-cardkey="F">
+                <div class="back-card__top"><span class="back-card__date">&nbsp;</span><span class="back-card__edit"></span></div>
+                <div class="back-card__placeholder" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="32" height="32" fill="none"><path d="M12 5v14M5 12h14" stroke="#bdbdbd" stroke-width="2.6" stroke-linecap="round"/></svg>
+                </div>
+                <h3 class="back-card__title">&nbsp;</h3>
+              </div>
+
+              <!-- B card: Hand Dance (yellow) -->
+              <div class="back-card back-card--yellow" style="--tilt: -12deg" data-cardkey="B">
+                <div class="back-card__top">
+                  <span class="back-card__date">2026.04.13</span>
+                  <span class="back-card__edit" aria-hidden="true"></span>
+                </div>
+                <div class="back-card__photo">
+                  <img class="back-card__photo-img" data-photo="hand-dance" src="./assets/images/card-photos.png" alt="" />
+                </div>
+                <h3 class="back-card__title">Hand Dance 🥰</h3>
+              </div>
+
+              <!-- D card: Nothing but Laughs (deep blue) -->
+              <div class="back-card back-card--blue-deep" style="--tilt: -12deg" data-cardkey="D">
+                <div class="back-card__top">
+                  <span class="back-card__date">2026.04.13</span>
+                  <span class="back-card__edit" aria-hidden="true"></span>
+                </div>
+                <div class="back-card__photo">
+                  <img class="back-card__photo-img" data-photo="nothing-laughs" src="./assets/images/card-photos.png" alt="" />
+                </div>
+                <h3 class="back-card__title">Nothing but Laughs 😛</h3>
+              </div>
+
+            </div>
+
+            <div class="initial-cards__col initial-cards__col--right">
+
+              <!-- A card: Always Down for a Trip (light blue) -->
+              <div class="back-card back-card--blue" style="--tilt: 12deg" data-cardkey="A">
+                <div class="back-card__top">
+                  <span class="back-card__date">2026.04.27</span>
+                  <span class="back-card__edit" aria-hidden="true"></span>
+                </div>
+                <div class="back-card__photo">
+                  <img class="back-card__photo-img" data-photo="trip" src="./assets/images/card-photos.png" alt="" />
+                </div>
+                <h3 class="back-card__title">Always Down for a Trip 💃🏻</h3>
+              </div>
+
+              <!-- C card: Pure Vibes (pink) -->
+              <div class="back-card back-card--pink" style="--tilt: 12deg" data-cardkey="C">
+                <div class="back-card__top">
+                  <span class="back-card__date">2026.04.13</span>
+                  <span class="back-card__edit" aria-hidden="true"></span>
+                </div>
+                <div class="back-card__photo">
+                  <img class="back-card__photo-img" data-photo="vibes" src="./assets/images/card-photos.png" alt="" />
+                </div>
+                <h3 class="back-card__title">Pure Vibes 💫</h3>
+              </div>
+
+            </div>
+          </div>
+
+          <button class="cta-add-duet" type="button" data-action="close-modal">
+            <span>Add Duet Now</span>
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" aria-hidden="true">
+              <path d="M5 12h13M13 6l6 6-6 6" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+
+        </div>
+      </aside>
+
+
+      <!-- ════════════════ POPUPS ════════════════ -->
+      <div class="popup-backdrop" id="popupBackdrop" hidden></div>
+
+      <div class="popup" id="popup-1" role="dialog" aria-modal="true" hidden>
+        <p class="popup__body">* Will jump to the video feed home page</p>
+      </div>
+
+      <div class="popup" id="popup-2" role="dialog" aria-modal="true" hidden>
+        <p class="popup__body">* Will jump to the shop page</p>
+      </div>
+
+      <div class="popup" id="popup-3" role="dialog" aria-modal="true" hidden>
+        <p class="popup__body">* Will jump to the duet-template page</p>
+      </div>
+
+      <div class="popup" id="popup-4" role="dialog" aria-modal="true" hidden>
+        <p class="popup__body">Limited time &amp; effort — the open-collection effect was only built for the first (Duet) page; the other two are stubbed.</p>
+      </div>
+
+      <!-- Confetti / particle canvas (drawn full-screen above content during celebrations) -->
+      <canvas class="fx-canvas" id="fxCanvas" aria-hidden="true"></canvas>
+
+    </main>
+  </div>
+
+  <script src="./script.js" defer></script>
+</body>
+</html>

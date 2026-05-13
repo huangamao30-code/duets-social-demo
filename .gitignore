@@ -1,0 +1,24 @@
+# macOS / Windows finder files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor configs
+.vscode/
+.idea/
+*.swp
+
+# Local development server logs
+*.log
+
+# Node / dependencies (not used in production but might appear during local tooling)
+node_modules/
+
+# Local headless screenshots — keep folder for Figma reference exports
+reference/render-*.png
+
+# Claude Code local cache (not needed at runtime)
+.claude/
+
+# Figma reference screenshots — not required to run the site
+reference/
