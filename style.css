@@ -191,13 +191,17 @@ body {
   visibility: hidden;
 }
 
-/* Background chat screenshot pinned to fill the exact 420×912 phone frame.
-   object-fit: fill stretches the 413-wide source by ~1.7% so coordinates align 1:1 with --u. */
+/* Background chat screenshot. Locked to the design 420×912 aspect ratio (NOT the
+   phone-frame's actual height, which gets clamped by 100dvh on short mobile viewports)
+   so the image never compresses vertically. Overflow is hidden by the parent .screen,
+   and hotspot coords stay aligned because they share the same width-based --u scale. */
 .initial-bg {
   position: absolute;
-  inset: 0;
+  top: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
+  height: auto;
+  aspect-ratio: 420 / 912;
   object-fit: fill;
   pointer-events: none;
   z-index: 1;
