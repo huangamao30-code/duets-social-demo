@@ -22,3 +22,10 @@ reference/render-*.png
 
 # Figma reference screenshots — not required to run the site
 reference/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
